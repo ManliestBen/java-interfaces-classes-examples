@@ -1,4 +1,32 @@
 package org.example;
 
-public class Truck {
+public class Truck extends Vehicle implements Maintenance {
+    int numDoors;
+    int numWheels;
+    int numSeats;
+    boolean hasTruckBed;
+    int milesSinceLastOilChange = 0;
+    public Truck(String make, String model, int year, String color, int mileage, int price, boolean isRunning, int numDoors, int numWheels, int numSeats, boolean hasTruckBed) {
+        super(make, model, year, color, mileage, price, isRunning);
+        this.numDoors = numDoors;
+        this.numWheels = numWheels;
+        this.numSeats = numSeats;
+        this.hasTruckBed = hasTruckBed;
+    }
+
+    @Override
+    public void repair() {
+        System.out.println("This truck has been repaired.");
+    }
+
+    @Override
+    public void oilChange() {
+        milesSinceLastOilChange = mileage;
+        System.out.println("Oil changed!  Next change at " + (milesSinceLastOilChange + 20000) + " miles.");
+    }
+
+    public void printInfo() {
+        System.out.println("This truck has " + numSeats + " seats, " + numDoors + " doors, and " + numWheels + " wheels.");
+        System.out.println("It is due for an oil change at " + (milesSinceLastOilChange + 20000) + " miles.");
+    }
 }
